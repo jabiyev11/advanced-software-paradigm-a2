@@ -51,3 +51,14 @@ and file formats such as PNG and JPEG use it as well.
 
 In Java, the byte order of the CPU is hidden from the programmer: a long always behaves the same on any machine.
 It becomes visible only when values are turned into raw bytes.
+
+### 1.4 Critique
+
+**Neither order is better on its own.**
+Each has small advantages. In little endian, the lowest byte is
+always at the variable's address, so reading a long as an int or a byte returns the
+correct lower part without moving the address, and arithmetic can start from the
+lowest byte where carries begin. Big endian is easier for humans to read in memory
+dumps, and comparing big-endian bytes one by one gives the same result as comparing
+the numbers, which is why databases often store keys in big endian. These advantages
+are minor, and the choice between the two is mostly a historical convention.
